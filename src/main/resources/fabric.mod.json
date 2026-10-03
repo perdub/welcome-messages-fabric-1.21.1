@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "welcome_messages",
+  "version": "${version}",
+  "name": "Welcome Messages",
+  "description": "Personal regex-based welcome messages for each player.",
+  "authors": [
+    "Nijika"
+  ],
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "dev.nijika.welcomemessages.WelcomeMessagesMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
