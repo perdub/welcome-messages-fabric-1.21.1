@@ -33,14 +33,24 @@ jobs:
       - name: Build
         run: gradle build --no-daemon
 
-      - name: Locate release JAR
+      - name: Locate and normalize release JAR
         id: jar
         shell: bash
         run: |
-          JAR="build/libs/welcome-messages.jar"
-          test -f "$JAR"
-          echo "path=$JAR" >> "$GITHUB_OUTPUT"
+          echo "Built JARs:"
+          find build/libs -maxdepth 1 -type f -name '*.jar' -print | sort
+
+          JAR="$(find build/libs -maxdepth 1 -type f -name '*.jar' \
+            ! -name '*-sources.jar' \
+            ! -name '*-dev.jar' \
+            | head -n 1)"
+
+          test -n "$JAR"
+          cp "$JAR" build/libs/welcome-messages.jar
+
+          echo "path=build/libs/welcome-messages.jar" >> "$GITHUB_OUTPUT"
           echo "Found: $JAR"
+          echo "Normalized to: build/libs/welcome-messages.jar"
 
       - name: Move stable latest tag
         env:

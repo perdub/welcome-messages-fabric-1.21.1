@@ -71,7 +71,7 @@ If no rule matches, the mod sends nothing.
 
 ## CI/CD
 
-Every push runs a build in GitHub Actions and updates a release tagged `latest`.
+Every push runs a build in GitHub Actions. The workflow automatically finds the remapped release JAR, copies it to the stable filename `welcome-messages.jar`, and updates a release tagged `latest`.
 
 Permanent latest-download URL:
 
